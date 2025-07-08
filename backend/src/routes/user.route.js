@@ -15,6 +15,7 @@ const router = express.Router();
 router.use(protectRoute);
 
 router.get("/", getRecommendedUsers);
+router.get("/suggestions", getRecommendedUsers);
 router.get("/friends", getMyFriends);
 
 router.post("/friend-request/:id", sendFriendRequest);

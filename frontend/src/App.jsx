@@ -7,6 +7,7 @@ import NotificationsPage from "./pages/NotificationsPage.jsx";
 import CallPage from "./pages/CallPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
+import Friendspage from "./pages/Friendspage.jsx";
 
 import { Toaster } from "react-hot-toast";
 
@@ -14,6 +15,7 @@ import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
+import SuggestionPage from "./pages/SuggestionPage.jsx";
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser();
@@ -49,6 +51,34 @@ const App = () => {
           path="/login"
           element={
             !isAuthenticated ? <LoginPage /> : <Navigate to={isOnboarded ? "/" : "/onboarding"} />
+          }
+        />
+        <Route
+          path="/friends"
+          element={
+            !isAuthenticated ? (
+              <LoginPage />
+            ) : !isOnboarded ? (
+              <Navigate to="/onboarding" />
+            ) : (
+              <Layout showSidebar={true}>
+                <Friendspage />
+              </Layout>
+            )
+          }
+        />
+        <Route
+          path="/suggestions"
+          element={
+            !isAuthenticated ? (
+              <LoginPage />
+            ) : !isOnboarded ? (
+              <Navigate to="/onboarding" />
+            ) : (
+              <Layout showSidebar={true}>
+                <SuggestionPage />
+              </Layout>
+            )
           }
         />
         <Route
