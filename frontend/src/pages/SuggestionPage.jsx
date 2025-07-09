@@ -15,6 +15,7 @@ import { getLanguageFlag } from "../components/FriendCard";
 const SuggestionPage = () => {
     const queryClient = useQueryClient();
     const [outgoingRequestsIds, setOutgoingRequestsIds] = useState(new Set());
+    const [search, setSearch] = useState("");
 
     const { data: suggestions = [], isLoading: loadingUsers } = useQuery({
         queryKey: ["suggestions"],
@@ -41,6 +42,9 @@ const SuggestionPage = () => {
         }
     }, [outgoingFriendReqs]);
 
+    const filteredSuggestions = suggestions.filter(user =>
+        user.fullName?.toLowerCase().includes(search.toLowerCase())
+    );
     return (
         <div className="p-4 sm:p-6 lg:p-8">
             <div className="container mx-auto space-y-10">
@@ -53,6 +57,14 @@ const SuggestionPage = () => {
                                     Discover perfect language exchange partners based on your profile
                                 </p>
                             </div>
+                            {/* ✅ Search Input */}
+                            <input
+                                type="text"
+                                placeholder="Search suggestions..."
+                                className="input input-bordered"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
                         </div>
                     </div>
 
@@ -69,7 +81,8 @@ const SuggestionPage = () => {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {suggestions.map((user) => {
+                            {/* Use filteredSuggestions here */}
+                            {filteredSuggestions.map((user) => {
                                 const hasRequestBeenSent = outgoingRequestsIds.has(user._id);
 
                                 return (
