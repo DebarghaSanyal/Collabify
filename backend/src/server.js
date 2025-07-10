@@ -1,3 +1,6 @@
+// Copyright(C) 2025 Debargha Sanyal
+// Licensed under GPL‑3.0: see the LICENSE file.
+
 import express from "express";
 import "dotenv/config";
 

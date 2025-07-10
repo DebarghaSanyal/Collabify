@@ -189,7 +189,7 @@ export const LANGUAGE_TO_FLAG = {
     japanese: "jp",
     korean: "kr",
     hindi: "in",
-    bengali: "bd",    
+    bengali: "in",    
     russian: "ru",
     portuguese: "pt",
     arabic: "sa",
@@ -197,3 +197,5 @@ export const LANGUAGE_TO_FLAG = {
     turkish: "tr",
     dutch: "nl",
   };
+
+// bd
